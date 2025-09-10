@@ -54,3 +54,12 @@ test "ejemplo 5: el de nivel"{
     assert.equals(bateriaAntiAerea, camion.esDeNivel(100))
     
 }
+
+test "ejemplo 6: cosas peligrosas"{
+    camion.cargar(knightRider)
+    camion.cargar(bateriaAntiAerea)
+    assert.equals(bateriaAntiAerea,camion.deMayorNivel(20))
+    assert.that(camion.masNivelQue(bumblebee).contains(bateriaAntiAerea))
+    assert.equals(0,camion.deMayorNivel(250).size())
+    assert.that(camion.)
+}

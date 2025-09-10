@@ -60,7 +60,7 @@ object camion {
            return cosas.filter({cosas => cosas.nivelPeligrosidad() > peligrosidad})
 	  }
 
-	  method masNivelQueObjeto(unaCosa){
+	  method masNivelQue(unaCosa){
 		self.deMayorNivel(unaCosa.nivelPeligrosidad())
 	  }
 
