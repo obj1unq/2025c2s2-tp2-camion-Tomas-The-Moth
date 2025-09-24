@@ -65,6 +65,7 @@ Encontrar una cosa cargada cuyo nivel de peligrosidad coincida exactamente con e
 
 #### Ejemplo
 
+
 Para un camión cargado con Bumblebee en modo auto, la batería antiaérea descargada y los residuos radiactivos: 
 
 - Si se pide algo de nivel 0 debe encontrar a la batería antiaérea.
