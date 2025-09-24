@@ -18,7 +18,7 @@ object bumblebee {
 var  modo = modoAuto
 method peso() { return 800}
 
-method nivelPeligrosidad() { return modo.peligrosidad() }
+method nivelPeligrosidad() { return modo.nivelPeligrosidad() }
 
 method bultos() {return 2}
 
@@ -52,7 +52,7 @@ object paqueteDeLadrillos {
 	method nivelPeligrosidad() { return 2 }
 
     method ladrillos(cantidad){
-		ladrillos = ladrillos + cantidad
+		ladrillos = cantidad
 }
    method bultos() {
     return (ladrillos/100).roundUp(0).min(3)
@@ -67,7 +67,7 @@ method sufrirAccidente(){
 
 object residuosRadiactivos {
 	var property peso = 0
-	method peligrosidad() {return 200}
+	method nivelPeligrosidad() {return 200}
    method bultos() {return 1}
    method sufrirAccidente() {self.peso(45)}
 }

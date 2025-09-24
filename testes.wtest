@@ -2,5 +2,55 @@ import camion.*
 import cosas.*
 
 test "ejemplo" {
+camion.cargar(bumblebee)
+assert.(camion.cosas().contains(bumblebee))
+camion.cargar(knightRider)
+assert.(camion.cosas().contains(bumblebee) and camion.cosas().contains(knightRider)) 
+camion.descargar(bumblebee)
+assert.(camion.cosas().contains(knightRider))
+assert.throwsException({camion.cargar(knightRider)})
+assert.throwsException({camion.descargar(bumblebee)})
+}
 
+test "ejemplo 2: todos par"{
+    arenaDeGranel.peso(50)
+camion.cargar(bumblebee)
+camion.cargar(arenaDeGranel)
+assert.that(camion.todosPar())
+arenaDeGranel.peso(51)
+assert.notThat(camion.todosPar())
+}
+
+test "ejemplo 3: busqueda por peso"{
+     arenaDeGranel.peso(50)
+camion.cargar(bumblebee)
+camion.cargar(arenaDeGranel)
+assert.equals(arenaDeGranel,camion.algunoQuePesa(50))
+assert.that(camion.hayAlgunoQuePesa(800))
+assert.notThat(camion.hayAlgunoQuePesa(500))
+
+}
+
+test "ejemplo 4: carga total y exceso de peso"{
+    paqueteDeLadrillos.ladrillos(300)
+    camion.cargar(bumblebee)
+    camion.cargar(paqueteDeLadrillos)
+    assert.equals(2400,camion.pesoTotal())
+    assert.notThat(camion.excesoDePeso())
+    paqueteDeLadrillos.ladrillos(400)
+    assert.equals(2600,camion.pesoTotal())
+    assert.that(camion.excesoDePeso())
+}
+
+test "ejemplo 5: el de nivel"{
+    camion.cargar(bumblebee)
+    camion.cargar(bateriaAntiAerea)
+    camion.cargar(residuosRadiactivos)
+    assert.equals(bateriaAntiAerea,camion.esDeNivel(0))
+     assert.equals(bumblebee,camion.esDeNivel(15))
+    assert.equals(residuosRadiactivos,camion.esDeNivel(200))
+    assert.throwsException({camion.esDeNivel(30)})
+    bateriaAntiAerea.haymisiles(true)
+    assert.equals(bateriaAntiAerea, camion.esDeNivel(100))
+    
 }

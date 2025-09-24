@@ -33,6 +33,9 @@ object camion {
 	  method hayAlgunoQuePesa(kilogramos){
        return cosas.any({cosas => cosas.peso() == kilogramos})
 	  }
+      method algunoQuePesa(kilogramos){
+       return cosas.find({cosas => cosas.peso() == kilogramos})
+	  }
 
 	  method pesoTotal() {
 		return cosas.sum({cosas => cosas.peso()}) + 1000
@@ -43,14 +46,14 @@ object camion {
 
 
 	   method validarDeNivel(peligrosidad){
-       if !cosas.any({cosas => cosas.nivelPeligrosidad() == peligrosidad}) {
-		self.error("hay una cosa demasiado peligrosa")
+       if (!cosas.any({cosas => cosas.nivelPeligrosidad() == peligrosidad})) {
+		self.error("no hay ninguna cosa con ese nivel de peligrosidad")
 	   }
 	   }
 
 	 method esDeNivel(peligrosidad){
 		self.validarDeNivel(peligrosidad)
-		return cosas.filter({cosas => cosas.nivelPeligrosidad() == peligrosidad})
+		return cosas.find({cosas => cosas.nivelPeligrosidad() == peligrosidad})
 	   }
 
 	   method deMayorNivel(peligrosidad){
@@ -72,7 +75,7 @@ object camion {
 	 
     var maxPeso = cosas.map({cosa => cosa.peso()}).max()
     
-    return cosas.filter({cosa => cosa.peso() == maxPeso})
+    return cosas.find({cosa => cosa.peso() == maxPeso})
             }
 	
 
