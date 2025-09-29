@@ -109,16 +109,20 @@ object bateriaAntiAerea {
 
 object contenedorPortuario{
 	const cosas = #{}
+
 	method peso(){
 	return cosas.sum({cosa => cosa.peso()}) + 100
 	}
+    method cargar(unaCosa) {
+		cosas.add(unaCosa)
 
+	}
     method nivelPeligrosidad(){
 		if (cosas.isEmpty()){
 			return 0
 		}
 		else{
-	return cosas.max({cosa => cosa.nivelPeligrosidad()})
+	return cosas.map({cosa => cosa.nivelPeligrosidad()}).max()
 }
 	}
 

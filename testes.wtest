@@ -52,14 +52,54 @@ test "ejemplo 5: el de nivel"{
     assert.throwsException({camion.esDeNivel(30)})
     bateriaAntiAerea.haymisiles(true)
     assert.equals(bateriaAntiAerea, camion.esDeNivel(100))
-    
+
 }
 
-test "ejemplo 6: cosas peligrosas"{
-    camion.cargar(knightRider)
+
+test "ejempo 6 cosas peligrosas"{
+    bateriaAntiAerea.haymisiles(true)
     camion.cargar(bateriaAntiAerea)
-    assert.equals(bateriaAntiAerea,camion.deMayorNivel(20))
+    camion.cargar(knightRider)
+    assert.that(camion.deMayorNivel(50).contains(bateriaAntiAerea))
     assert.that(camion.masNivelQue(bumblebee).contains(bateriaAntiAerea))
-    assert.equals(0,camion.deMayorNivel(250).size())
-    assert.that(camion.)
+    assert.that(camion.deMayorNivel(2).contains(knightRider) and camion.deMayorNivel(2).contains(bateriaAntiAerea))
+    assert.that(camion.masNivelQue(paqueteDeLadrillos).contains(knightRider) and camion.masNivelQue(paqueteDeLadrillos).contains(bateriaAntiAerea))
+    assert.that(camion.deMayorNivel(200).isEmpty())
+    assert.that(camion.masNivelQue(residuosRadiactivos).isEmpty())
+}
+
+test "ejemplo 7: puede circular"{
+    camion.cargar(bumblebee)
+    camion.cargar(paqueteDeLadrillos)
+    bumblebee.modo(modoAuto)
+    paqueteDeLadrillos.ladrillos(300)
+    assert.that(camion.puedeCircular(20))
+     paqueteDeLadrillos.ladrillos(400)
+        assert.notThat(camion.puedeCircular(20))
+    bumblebee.modo(modoRobot)
+    paqueteDeLadrillos.ladrillos(300)
+    assert.notThat(camion.puedeCircular(20))
+}
+
+test "ejemplo 8 las cosas extras"{
+    assert.equals(100, contenedorPortuario.peso())
+    assert.equals(0,contenedorPortuario.nivelPeligrosidad()) 
+    contenedorPortuario.cargar(knightRider)
+    arenaDeGranel.peso(50)
+    contenedorPortuario.cargar(arenaDeGranel)
+    assert.equals(10,contenedorPortuario.nivelPeligrosidad())
+    assert.equals(650,contenedorPortuario.peso())
+    embalajeDeSeguridad.embalar(knightRider)
+    assert.equals(500,embalajeDeSeguridad.peso())
+    assert.equals(5,embalajeDeSeguridad.nivelPeligrosidad())
+    embalajeDeSeguridad.embalar(bumblebee)
+    assert.equals(800,embalajeDeSeguridad.peso())
+    assert.equals(7.5 ,embalajeDeSeguridad.nivelPeligrosidad())
+}
+
+test "ejemplo 9 entre dos valores"{
+    camion.cargar(bumblebee)
+    camion.cargar(paqueteDeLadrillos)
+    paqueteDeLadrillos.ladrillos(300)
+    assert.that(camion.cosaquePesaEntre(500,900).notempty())  )
 }

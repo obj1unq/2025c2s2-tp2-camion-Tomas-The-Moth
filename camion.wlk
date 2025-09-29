@@ -61,11 +61,11 @@ object camion {
 	  }
 
 	  method masNivelQue(unaCosa){
-		self.deMayorNivel(unaCosa.nivelPeligrosidad())
+		return self.deMayorNivel(unaCosa.nivelPeligrosidad())
 	  }
 
 	  method puedeCircular(peligrosidadIndicada){
-		return !self.excesoDePeso() and !self.deMayorNivel(peligrosidadIndicada)
+		return !self.excesoDePeso() and self.deMayorNivel(peligrosidadIndicada).isEmpty()
 	  }
 
 	method cosaQuePesaEntre(min, max) {
