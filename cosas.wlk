@@ -53,15 +53,19 @@ object paqueteDeLadrillos {
 		ladrillos = cantidad
 }
    method bultos() {
-    return (ladrillos/100).roundUp(0).min(3)
-        
+    return if (ladrillos <= 100) {
+		1
+	} else if (ladrillos <= 300) {
+		2
+	} else {
+		3
 }
 method sufrirAccidente(){
-	ladrillos = ladrillos - 12
+	ladrillos = (ladrillos - 12).min(0)
 }
 
    }
-
+}
 
 object residuosRadiactivos {
 	var property peso = 0
@@ -93,10 +97,10 @@ object bateriaAntiAerea {
 
 	 method bultos(){
 		if (haymisiles){
-			return 1
+			return 2
 		}
 		else {
-			return 2
+			return 1
 		}
 	 }
 

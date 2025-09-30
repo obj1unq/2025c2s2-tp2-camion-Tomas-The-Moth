@@ -141,4 +141,31 @@ camion.cargar(bateriaAntiAerea)
 bateriaAntiAerea.haymisiles(false)
 assert.equals(9, camion.bultosTotales())
 }
+
+test "caso 2"{
+camion.cargar(paqueteDeLadrillos)
+paqueteDeLadrillos.ladrillos(150)
+camion.cargar(bateriaAntiAerea)
+bateriaAntiAerea.haymisiles(true)
+camion.cargar(contenedorPortuario)
+
+assert.equals(5, camion.bultosTotales())
+}
+test "caso 3"{
+camion.cargar(paqueteDeLadrillos)
+paqueteDeLadrillos.ladrillos(350)
+camion.cargar(arenaDeGranel)
+assert.equals(4, camion.bultosTotales())
+}
+
+}
+
+describe "sufrir accidente"{
+    test "caso 1"{
+        bumblebee.modo(modoRobot)
+        bumblebee.sufrirAccidente()
+        assert.equals(30, bumblebee.nivelPeligrosidad())
+        bumblebee.sufrirAccidente()
+        assert.equals(30, bumblebee.nivelPeligrosidad())
     }
+}
