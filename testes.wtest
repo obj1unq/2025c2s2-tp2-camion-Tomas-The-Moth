@@ -1,6 +1,6 @@
 import camion.*
 import cosas.*
-
+describe "todoslostest"{
 test "ejemplo" {
 camion.cargar(bumblebee)
 assert.(camion.cosas().contains(bumblebee))
@@ -101,5 +101,44 @@ test "ejemplo 9 entre dos valores"{
     camion.cargar(bumblebee)
     camion.cargar(paqueteDeLadrillos)
     paqueteDeLadrillos.ladrillos(300)
-    assert.that(camion.cosaquePesaEntre(500,900).notempty())  )
+    assert.that(camion.cosaQuePesaEntre(5,100).isEmpty())  
+
+    assert.notThat(camion.cosaQuePesaEntre(5,1000).isEmpty()) 
+     assert.that(camion.cosaQuePesaEntre(900,1000).isEmpty())   
 }
+
+test "ejemplo 10 cosa que mas pesa"{
+    camion.cargar(bumblebee)
+    camion.cargar(paqueteDeLadrillos)
+    paqueteDeLadrillos.ladrillos(300)
+    assert.equals(bumblebee,camion.cosaQueMasPesa())
+    camion.descargar(bumblebee)
+    camion.descargar(paqueteDeLadrillos)
+    assert.throwsException({camion.cosaQueMasPesa()})
+}
+
+test "ejemplo 11 pesos"{
+    camion.cargar(bumblebee)
+    paqueteDeLadrillos.ladrillos(300)
+    camion.cargar(paqueteDeLadrillos)
+    assert.that(camion.pesos().contains(600))
+    assert.that(camion.pesos().contains(800))
+    }
+}
+
+describe "totalBultos"{
+
+test "caso 1"{
+contenedorPortuario.cargar(knightRider)
+contenedorPortuario.cargar(bumblebee)
+embalajeDeSeguridad.embalar(residuosRadiactivos)
+camion.cargar(contenedorPortuario)
+camion.cargar(embalajeDeSeguridad)
+camion.cargar(paqueteDeLadrillos)
+paqueteDeLadrillos.ladrillos(50)
+camion.cargar(arenaDeGranel)
+camion.cargar(bateriaAntiAerea)
+bateriaAntiAerea.haymisiles(false)
+assert.equals(9, camion.bultosTotales())
+}
+    }

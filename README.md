@@ -120,7 +120,7 @@ Saber si el camión tiene algo que pesa entre dos valores (mínimo y máximo).
 
 #### Ejemplo
 Para un camión cargado con Bumblebee y un paquete de 300 ladrillos:
-- Tiene algo que pesa entre 5 y 100.
+- Noiene algo que pesa entre 5 y 100.
 - Tiene algo que pesa entre 5 y 1000.
 - No tiene algo que pese entre 900 y 1000.
 

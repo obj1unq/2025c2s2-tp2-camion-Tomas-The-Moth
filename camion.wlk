@@ -69,21 +69,25 @@ object camion {
 	  }
 
 	method cosaQuePesaEntre(min, max) {
-    return cosas.filter({cosa => cosa.peso() > min && cosa.peso() < max})
+    return cosas.filter({cosa => cosa.peso().between(min, max)})
 }
+	method validarCargaNoVacia(){
+		if (cosas.isEmpty()){
+			self.error("el camión no tiene cosas cargadas")
+		}
+	}
 	method cosaQueMasPesa(){
-	 
-    var maxPeso = cosas.map({cosa => cosa.peso()}).max()
-    
-    return cosas.find({cosa => cosa.peso() == maxPeso})
-            }
+	 self.validarCargaNoVacia()
+    return cosas.max({cosa => cosa.peso()})
+     }
 	
+
 
 method pesos(){
 	return cosas.map({cosa => cosa.peso()})
 }
 	method bultosTotales(){
-		cosas.sum({cosa=> cosa.bultos()})
+		return cosas.sum({cosa=> cosa.bultos()})
 	}
 }
 

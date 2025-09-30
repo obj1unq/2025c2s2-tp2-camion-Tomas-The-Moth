@@ -15,7 +15,7 @@ object arenaDeGranel {
 }
 
 object bumblebee {
-var  modo = modoAuto
+var property modo = modoAuto
 method peso() { return 800}
 
 method nivelPeligrosidad() { return modo.nivelPeligrosidad() }
@@ -27,22 +27,20 @@ method modo(nuevoModo){
 }
 
 method sufrirAccidente(){
-	if (modo == modoAuto) {
-		modo = modoRobot
-	}
-	else {
-		modo = modoAuto
-	}
+  
+ modo = modo.modoAlAccidentarse()
 }
 
 }
 
 object modoAuto {
 	method nivelPeligrosidad() {return 15 }
+	  method modoAlAccidentarse() {return modoAuto}
 }
 
 object modoRobot {
 	method nivelPeligrosidad() {return 30}
+	method modoAlAccidentarse() {return modoRobot}
 }
 
 
@@ -122,7 +120,7 @@ object contenedorPortuario{
 			return 0
 		}
 		else{
-	return cosas.map({cosa => cosa.nivelPeligrosidad()}).max()
+	return cosas.max({cosa => cosa.nivelPeligrosidad()}).nivelPeligrosidad()
 }
 	}
 
