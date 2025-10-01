@@ -89,8 +89,20 @@ method pesos(){
 	method bultosTotales(){
 		return cosas.sum({cosa=> cosa.bultos()})
 	}
+method sufrirAccidente(){
+	cosas.forEach({cosa => cosa.sufrirAccidente()})
 }
 
+method transportar(destino, camino){
+	if (camino.soportaElviaje()){
+		destino.llegar(self)
+		
+	}
+	else{
+		self.error("el camino no soporta el viaje")
+}
+}
+}
 
 
 
